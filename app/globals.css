@@ -1,0 +1,549 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #0a0a0b;
+  --foreground: #fafafa;
+  --muted: #161618;
+  --muted-foreground: #a1a1aa;
+  --card: #111113;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --accent: #3b82f6;
+  --accent-foreground: #eff6ff;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --chart-accent: #3b82f6;
+  --chart-success: #22c55e;
+  --glass-fill: rgba(14, 14, 18, 0.38);
+  --glass-fill-strong: rgba(18, 18, 24, 0.48);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-highlight: rgba(255, 255, 255, 0.18);
+  --glass-blur: 44px;
+  --glass-saturate: 200%;
+  --page-wash-accent: 8%;
+  --page-wash-end: 4%;
+  --page-spot-accent: 14%;
+  --page-spot-success: 6%;
+  --page-spot-warning: 5%;
+  --shell-header-height: calc(max(1rem, env(safe-area-inset-top, 0px)) + 4.75rem);
+  --elevated-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+  --elevated-shadow-lg:
+    0 20px 56px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  --elevated-shadow-bar: 0 16px 48px rgba(0, 0, 0, 0.18);
+  --surface-inset-edge: rgba(0, 0, 0, 0.12);
+  --ring-track: rgba(255, 255, 255, 0.12);
+  --card-inset-top: rgba(255, 255, 255, 0.04);
+  --surface-glow-gradient: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--card) 72%, transparent) 0%,
+    color-mix(in srgb, #141820 70%, transparent) 18%,
+    color-mix(in srgb, #121a28 68%, transparent) 38%,
+    color-mix(in srgb, #0f172a 65%, transparent) 58%,
+    color-mix(in srgb, #131922 70%, transparent) 78%,
+    color-mix(in srgb, var(--card) 72%, transparent) 100%
+  );
+  --glass-dock-ring: rgba(255, 255, 255, 0.04);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --background: #f1f5f9;
+    --foreground: #0f172a;
+    --muted: #e2e8f0;
+    --muted-foreground: #64748b;
+    --card: #ffffff;
+    --card-border: rgba(15, 23, 42, 0.08);
+    --accent: #2563eb;
+    --success: #16a34a;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --chart-accent: #2563eb;
+    --chart-success: #16a34a;
+    --glass-fill: rgba(255, 255, 255, 0.78);
+    --glass-fill-strong: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(15, 23, 42, 0.07);
+    --glass-highlight: rgba(255, 255, 255, 0.98);
+    --glass-blur: 32px;
+    --glass-saturate: 160%;
+    --page-wash-accent: 7%;
+    --page-wash-end: 4%;
+    --page-spot-accent: 9%;
+    --page-spot-success: 5%;
+    --page-spot-warning: 4%;
+    --elevated-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 8px 28px rgba(15, 23, 42, 0.07);
+    --elevated-shadow-lg:
+      0 10px 40px rgba(15, 23, 42, 0.1),
+      0 2px 8px rgba(15, 23, 42, 0.04);
+    --elevated-shadow-bar: 0 4px 24px rgba(15, 23, 42, 0.06);
+    --surface-inset-edge: rgba(15, 23, 42, 0.05);
+    --ring-track: rgba(15, 23, 42, 0.1);
+    --card-inset-top: rgba(255, 255, 255, 0.95);
+    --surface-glow-gradient: linear-gradient(
+      130deg,
+      color-mix(in srgb, #ffffff 94%, var(--accent)) 0%,
+      color-mix(in srgb, var(--accent) 9%, #eef2ff) 28%,
+      color-mix(in srgb, var(--success) 6%, #f0fdf4) 52%,
+      color-mix(in srgb, var(--accent) 5%, #f8fafc) 76%,
+      color-mix(in srgb, #ffffff 96%, transparent) 100%
+    );
+    --glass-dock-ring: rgba(255, 255, 255, 0.65);
+  }
+
+  .glass-pill {
+    background: color-mix(in srgb, var(--accent) 11%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 1px 3px rgba(15, 23, 42, 0.06);
+  }
+
+  .surface-glow {
+    border-color: color-mix(in oklab, var(--accent) 14%, var(--glass-border));
+    box-shadow: var(--elevated-shadow);
+  }
+
+  .surface-glow-hero {
+    border-color: color-mix(in oklab, var(--accent) 18%, var(--glass-border));
+  }
+
+  .surface-glow::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(37, 99, 235, 0.08),
+      rgba(22, 163, 74, 0.05),
+      transparent
+    );
+  }
+
+  .skeleton-glow::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.75),
+      transparent
+    );
+  }
+
+  .progress-ring-track {
+    color: var(--ring-track);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--background);
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100dvh;
+}
+
+/* Fixed page backdrop — visible in gaps under glass chrome */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-color: var(--background);
+  background-image:
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--accent) var(--page-wash-accent), transparent) 0%,
+      transparent 42%,
+      transparent 58%,
+      color-mix(in oklab, var(--foreground) var(--page-wash-end), transparent) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 256px 256px;
+  background-repeat: no-repeat, repeat;
+  background-attachment: fixed;
+}
+
+/* Accent / success / warning orbs — slow circular drift (not on body — keeps position:fixed reliable) */
+.page-backdrop-orbit {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 165vmax;
+  height: 165vmax;
+  margin-left: -82.5vmax;
+  margin-top: -82.5vmax;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      circle min(42vmax, 520px) at 38% 36%,
+      color-mix(in oklab, var(--accent) var(--page-spot-accent), transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      circle min(38vmax, 460px) at 72% 52%,
+      color-mix(in oklab, var(--success) var(--page-spot-success), transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      circle min(34vmax, 400px) at 48% 78%,
+      color-mix(in oklab, var(--warning) var(--page-spot-warning), transparent),
+      transparent 66%
+    );
+  animation: page-backdrop-orbit 52s linear infinite;
+  will-change: transform;
+}
+
+.app-shell-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  display: flex;
+  justify-content: center;
+}
+
+.shell-header-spacer {
+  height: var(--shell-header-height);
+  flex-shrink: 0;
+}
+
+@keyframes page-backdrop-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.surface-flat {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 var(--surface-inset-edge),
+    var(--elevated-shadow);
+}
+
+.glass {
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+.glass-bar {
+  background: color-mix(in srgb, var(--glass-fill-strong) 75%, transparent);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--elevated-shadow-bar);
+}
+
+.glass-bar-soft {
+  background: color-mix(in srgb, var(--glass-fill-strong) 62%, transparent);
+  border-bottom: none;
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+.glass-dock {
+  background: color-mix(in srgb, var(--glass-fill-strong) 82%, transparent);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.35rem;
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 0 0 1px var(--glass-dock-ring),
+    var(--elevated-shadow-lg);
+}
+
+.glass-pill {
+  background: color-mix(in srgb, var(--foreground) 12%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(var(--glass-saturate));
+  backdrop-filter: blur(20px) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-inset {
+  box-shadow: inset 0 1px 0 var(--card-inset-top);
+}
+
+.glass-dock-pill {
+  transition:
+    left 220ms ease-out,
+    width 220ms ease-out;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .surface-flat,
+  .glass-bar,
+  .glass-dock,
+  .glass-pill {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--card);
+  }
+}
+
+.shell-workspace .page-enter {
+  animation-duration: 0.22s;
+}
+
+.safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.safe-bottom-offset {
+  bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.35s ease-out both;
+}
+
+@keyframes tab-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-enter {
+  animation: tab-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-enter {
+  animation: tab-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.metric-item {
+  animation: fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.metric-item-delay-1 {
+  animation-delay: 0.06s;
+}
+
+.metric-item-delay-2 {
+  animation-delay: 0.12s;
+}
+
+.metric-item-delay-3 {
+  animation-delay: 0.18s;
+}
+
+.chart-enter {
+  animation: fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.list-item-enter {
+  animation: fade-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes surface-gradient-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes surface-gradient-shimmer {
+  0% {
+    transform: translateX(-30%) rotate(8deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(30%) rotate(8deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(80%) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes progress-success-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.04);
+  }
+}
+
+.surface-glow {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--glass-border));
+  -webkit-backdrop-filter: blur(22px) saturate(var(--glass-saturate));
+  backdrop-filter: blur(22px) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--elevated-shadow);
+}
+
+.progress-ring-track {
+  color: var(--ring-track);
+}
+
+.surface-glow-hero {
+  border-color: color-mix(in oklab, var(--accent) 32%, transparent);
+}
+
+.surface-glow-metric-b::before {
+  animation-duration: 11s;
+  animation-delay: -4.5s;
+}
+
+.surface-glow-metric-b::after {
+  animation-duration: 8.5s;
+  animation-delay: -3.2s;
+}
+
+.skeleton-glow {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--muted);
+}
+
+.skeleton-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.progress-medallion-glow {
+  animation: progress-success-glow 2.8s ease-in-out infinite;
+}
+
+.surface-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--surface-glow-gradient);
+  background-size: 220% 220%;
+  animation: surface-gradient-drift 9s ease-in-out infinite;
+}
+
+.surface-glow::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 80%;
+  height: 180%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.14),
+    rgba(34, 197, 94, 0.06),
+    transparent
+  );
+  animation: surface-gradient-shimmer 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-tab-enter,
+  .page-enter,
+  .metric-item,
+  .chart-enter,
+  .list-item-enter,
+  .surface-glow::before,
+  .surface-glow::after,
+  .skeleton-glow::after,
+  .progress-medallion-glow {
+    animation: none;
+  }
+
+  .page-backdrop-orbit {
+    animation: none;
+  }
+
+  .glass-dock-pill {
+    transition: left 120ms ease, width 120ms ease;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
